@@ -1,0 +1,404 @@
+#root {
+  width: 100vw;  /* ขยายเต็มหน้าจอ */
+  height: 100vh; /* ทำให้เนื้อหาเต็มจอ */
+  margin: 0;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* จัดกึ่งกลางหน้าจอ */
+  
+}
+
+.logo {
+  height: 25em;
+  width: 390px;
+  position: absolute;
+  top: 50%; /* กำหนดตำแหน่งจากบน */
+  left: 50%; /* กำหนดตำแหน่งจากซ้าย */
+  transform: translate(-50%, -50%); /* ตั้งกลางทั้งแนวนอนและแนวตั้ง */
+  padding: 5em;
+  z-index: 9999; /* ให้อยู่บนสุด */
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+
+.logo-container{
+  left: 50%;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #7c0606);
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #310a74f7);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+h1 {
+  height: 0.1cm;
+}
+
+
+.card {
+  padding: 5em;
+  text-transform: lowercase;
+
+}
+
+.read-the-docs {
+  position: absolute;
+  top: 5%; /* วางบนสุด */
+  left: 50%;
+  transform: translateX(-50%); /* ตั้งกึ่งกลางแนวนอน */
+  font-family: "Athiti", sans-serif; /* เปลี่ยนฟอนต์ */
+  font-size: 26px; /* ปรับขนาดฟอนต์ */
+  font-weight: bold; /* ทำให้ตัวหนา */
+  color: #a40e0e;
+  text-align: center; /* จัดกลางแนวนอน */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* เอฟเฟกต์เงาข้อความ */
+  
+}
+
+
+/* ปรับพื้นหลัง */
+.background {
+  position: fixed; /* ให้พื้นหลังคงที่ */
+  top: 0;
+  left: 0;
+  width: 100vw; /* ปรับขนาดให้เต็มจอแนวนอน */
+  height: 100vh; /* ปรับขนาดให้เต็มจอแนวตั้ง */
+  background: url('./assets/wal/วอลเปเปอร์.png') no-repeat center center;
+  background-size: cover; /* ปรับให้รูปเต็มจอและตัดส่วนเกินออก */
+  z-index: -9999; /* ✅ ตั้งค่าให้อยู่หลังสุด */
+}
+
+
+/* ปุ่ม START */
+.start-button {
+  position: absolute;
+  z-index: 1000; /* ให้อยู่ข้างหน้าสุด */
+  width: 200px;
+  height: 59px;
+  left: 50%;
+  top: calc(80% + 20px); /* อยู่ใต้โลโก้ 20px */
+  transform: translateX(-50%); /* จัดให้กึ่งกลางพอดี */
+  background: #a93030;
+  border-radius: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 35px;
+  line-height: 58px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: "Athiti", serif;
+}
+
+.start-button:hover {
+  background: #8b2525;
+}
+
+@keyframes example {
+  from {background-color: red;}
+  to {background-color: yellow;}
+}
+
+/* The element to apply the animation to */
+.div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 4s;
+}
+.athiti-medium {
+  font-family: "Athiti", serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* หน้า intro */
+
+.Desktop-2 {
+  position: relative;
+  width: 100%; /* กำหนดให้ความกว้างเป็น 100% ของขนาดหน้าจอ */
+  height: 100vh; /* กำหนดให้ความสูงเป็น 100% ของความสูงหน้าจอ */
+  background: #FFFFFF;
+  z-index: -9999;
+
+}
+
+
+
+.Rectangle-9{
+position: relative;
+right: 40px;
+width: 1920px;
+height: 86.65px;
+top: -32px;
+background: #5F1011;
+}
+
+.Rectangle-10{
+position: absolute;
+width: 226.41px;
+height: 59.64px;
+left: 1262.73px;
+top: 15px;
+background: linear-gradient(90deg, #530103 0%, rgba(224, 130, 132, 0.47) 57.5%, rgba(194, 68, 71, 0.47) 100%);
+/* M3/Elevation Light/2 */
+box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+border-radius: 15px;
+}
+
+.Rectangle-11{
+position: absolute;
+width: 226.41px;
+height: 59.64px;
+left: 1000.88px;
+top: 15px;
+background: linear-gradient(90deg, #530103 0%, rgba(224, 130, 132, 0.47) 57.5%, rgba(194, 68, 71, 0.47) 100%);
+/* M3/Elevation Light/2 */
+box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+border-radius: 15px;
+}
+
+.SIGNIN{
+position: absolute;
+width: 175.12px;
+height: 44px;
+left: -230px;
+top: 11px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 39px;
+color: #FFFFFF;
+}
+
+.TRIPTRAP{
+position: absolute;
+width: 288.15px;
+height: 64.96px;
+left: 121.36px;
+top: 1px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 40px;
+line-height: 48px;
+color: #FFFFFF;
+}
+
+
+.WHATISTRIPTRAP{
+position: absolute;
+width: 1220.61px;
+height: 74.83px;
+left: 105.08px;
+top: 110px;
+font-family: 'League Spartan';
+font-style: normal;
+font-weight: 700;
+font-size: 96px;
+line-height: 88px;
+color: #600404;
+}
+
+
+.intro-text{
+  position: absolute;
+  width: 1220.61px;
+  height: 74.83px;
+  left: 105.08px;
+top: 303.77px;
+font-family: 'Athiti';
+font-style: normal;
+font-weight: 300;
+font-size: 20px;
+line-height: 32px;
+color: #8A2828;
+z-index: 1
+}
+
+
+.SIGNUP{
+position: absolute;
+width: 187.21px;
+height: 44px;
+left: 280px;
+top: 11px;
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 39px;
+color: #FFFFFF;
+opacity: 0.7;
+}
+
+.Logobar {
+  position: absolute;
+  width: 20px; /* ปรับขนาดความกว้างให้เล็กลง */
+  height: 50px; /* ปรับขนาดความสูงให้เล็กลง */
+  left: 10px; /* ปรับตำแหน่งแนวนอน */
+  top: -1100px; /* ปรับตำแหน่งแนวตั้ง */
+  background: url(Logo.png);
+  background-size: contain; /* ปรับขนาดภาพให้พอดีกับขนาดของ .Logobar */
+  background-repeat: no-repeat; /* ไม่ให้ภาพซ้ำ */
+}
+
+
+.pic-header {
+  position: absolute;
+  width: 526.56px; 
+  height: 230.49px;
+  left: 454.72px;
+  top: 314.23px;
+  z-index: 9999;
+}
+
+
+  .pic-header img {
+    width: 550px; /* กำหนดความกว้างของรูป */
+    height: 250%; /* คงอัตราส่วนเดิมของรูป */
+  }
+
+
+
+
+
+.siampic{
+position: absolute;
+width: 363.45px;
+height: 272.25px;
+left: 110.32px;
+top: 931.46px;
+background: url(สยาม.jpg);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 44px;
+}
+
+.benpark{
+position: absolute;
+width: 363.45px;
+height: 272.25px;
+left: 536.28px;
+top: 973.69px;
+background: url(สวนเบญ.jpg);
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+border-radius: 44px;
+}
+
+.bantadthongstreet{
+position: absolute;
+width: 363.45px;
+height: 272.25px;
+left: 91.27px;
+top: 1326.29px;
+background: url(บรรทัดทอง.jpeg);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 44px;
+}
+
+
+.suanluuangpark{
+position: absolute;
+width: 363.45px;
+height: 272.25px;
+left: 536.28px;
+top: 1289.34px;
+background: url(สวนหลวง.jpg);
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+border-radius: 44px;
+}
+
+.iconsiam{
+position: absolute;
+width: 363.45px;
+height: 272.25px;
+left: 962.24px;
+top: 1326.29px;
+background: url(IconSiam.jpeg);
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+border-radius: 44px;
+}
+
+.chinatow{
+position: absolute;
+width: 363.45px;
+height: 272.25px;
+left: 962.24px;
+top: 931.46px;
+background: url(เยาวราช.jpeg);
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+border-radius: 44px;
+}
+
+.ic-profile{
+position: absolute;
+width: 58px;
+height: 60px;
+left: 869px;
+top: 49.69px;
+opacity: 0.33;
+}
+
+.Vector-1{
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 8.33%;
+bottom: 8.33%;
+background: #000000;
+}
+
+.Ellipse-4{
+box-sizing: border-box;
+position: absolute;
+width: 70.62px;
+height: 68px;
+left: 618.85px;
+top: 1621.18px;
+border: 1px solid #000000;
+}
+
+.ic:round-home{
+position: absolute;
+width: 40px;
+height: 39px;
+left: 634.16px;
+top: 1635.68px;
+background: url(home.png);
+}
+
+
+.Vector-2{
+position: absolute;
+left: 11.68%;
+right: 11.66%;
+top: 13.94%;
+bottom: 16.67%;
+background: #000000;
+}
+
