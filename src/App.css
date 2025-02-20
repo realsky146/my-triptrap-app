@@ -1,11 +1,13 @@
 #root {
-  width: 100vw;
-  height: 100vh;
+  width: 100vw;  /* ขยายเต็มหน้าจอ */
+  height: 100vh; /* ทำให้เนื้อหาเต็มจอ */
+  margin: 0;
+  padding: 2rem;
   text-align: center;
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 1; /* ตรวจสอบให้แน่ใจว่า #root มี z-index สูงพอ */
+  align-items: center; /* จัดกึ่งกลางหน้าจอ */
+  
 }
 
 .logo {
@@ -75,16 +77,16 @@ h1 {
 }
 
 
-/* ปรับพื้นหลังให้เต็มหน้าจอ */
+/* ปรับพื้นหลัง */
 .background {
-  position: fixed;  /* ให้พื้นหลังคงที่ ไม่เลื่อนตาม */
-  width: 100vw;  /* ปรับขนาดให้เต็มจอแนวนอน */
-  height: 100vh;  /* ปรับขนาดให้เต็มจอแนวตั้ง */
-  background-image: url('./assets/wal/วอลเปเปอร์.png');
-  background-repeat: no-repeat;
-  background-position: center center;
+  position: fixed; /* ให้พื้นหลังคงที่ */
+  top: 0;
+  left: 0;
+  width: 100vw; /* ปรับขนาดให้เต็มจอแนวนอน */
+  height: 100vh; /* ปรับขนาดให้เต็มจอแนวตั้ง */
+  background: url('./assets/wal/วอลเปเปอร์.png') no-repeat center center;
   background-size: cover; /* ปรับให้รูปเต็มจอและตัดส่วนเกินออก */
-  z-index: -1;  /* ไม่ต้องตั้งค่าสูงเกินไป แค่ให้ต่ำกว่าส่วนอื่นก็พอ */
+  z-index: -9999; /* ✅ ตั้งค่าให้อยู่หลังสุด */
 }
 
 
@@ -134,271 +136,3 @@ h1 {
   font-style: normal;
 }
 
-/* หน้า intro */
-
-.Desktop-2 {
-  position: relative;
-  width: 100%; /* กำหนดให้ความกว้างเป็น 100% ของขนาดหน้าจอ */
-  height: 100vh; /* กำหนดให้ความสูงเป็น 100% ของความสูงหน้าจอ */
-  background: #FFFFFF;
-  z-index: -9999;
-
-}
-
-.Rectangle-9 {
-
-  position: absolute; /* เปลี่ยนจาก absolute เป็น relative */
-  width: 1519px;
-  height: 66.65px;
-  background: #5F1011;
-  z-index: -1; /* ตั้งค่า z-index ให้สูงขึ้น */
-}
-
-.Rectangle-10, .Rectangle-11 {
-  top: -10px;
-  justify-content: center;
-  position: absolute;
-  align-items: center;
-  width: 180px;
-  height: 50px;
-  background: linear-gradient(90deg, #530103 0%, rgba(194, 68, 71, 0.47) 100%);
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 2px 6px 2px rgba(0, 0, 0, 0.15);
-  border-radius: 5px;
-  transition: all 0.3s ease-in-out;
-  z-index: 1001; /* กำหนดค่า z-index สูงกว่า #root */
-}
-
-.Rectangle-10 {
-  left:80%; /* วางตำแหน่งที่กลางหน้าจอ */
-  top: 7px;
-}
-
-.Rectangle-11 {
-  left: 65%; /* ขยับให้ห่างจากปุ่มแรกเล็กน้อย */
-  top: 7px;
-}
-
-.SIGNIN{
-top: 10px;
-}
-
-/* เอฟเฟกต์เมื่อโฮเวอร์ */
-.Rectangle-10:hover, .Rectangle-11:hover {
-  background: linear-gradient(90deg, #720105 0%, rgba(255, 100, 105, 0.7) 100%);
-  transform: scale(1.1) translateX(10px);
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.4), 0px 4px 10px 3px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  z-index: 1500; /* ให้สูงที่สุดเมื่อมีการโฮเวอร์ */
-}
-
-.SIGNUP, .SIGNIN {
-  position: absolute;
-  width: 288.15px;
-  height: 64.96px;
-  left: -50px;
-  top: -0px;
-  font-family: 'Inter', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 48px;
-  color: #FFFFFF;
-}
-
-.TRIPTRAP{
-position: absolute;
-width: 288.15px;
-height: 64.96px;
-left: 121.36px;
-top: -20px;
-font-family: 'Inter', sans-serif;
-font-style: normal;
-font-weight: 400;
-font-size: 40px;
-line-height: 48px;
-color: #FFFFFF;
-}
-
-
-.WHATISTRIPTRAP{
-position: absolute;
-width: 1220.61px;
-height: 74.83px;
-left: 160px;
-top: 110px;
-font-family: 'Inter', sans-serif;
-font-style: normal;
-font-weight: 700;
-font-size: 96px;
-line-height: 88px;
-color: #600404;
-}
-
-
-.intro-text{
-  position: absolute;
-  width: 1220.61px;
-  height: 74.83px;
-  left: 160px;
-top: 303.77px;
-font-family: 'Inter', sans-serif;
-font-style: normal;
-font-weight: 300;
-font-size: 20px;
-line-height: 32px;
-color: #8A2828;
-z-index: 1
-}
-  
-.Logobar {
-  position: absolute;
-  width: 20px; /* ปรับขนาดความกว้างให้เล็กลง */
-  height: 50px; /* ปรับขนาดความสูงให้เล็กลง */
-  left: 10px; /* ปรับตำแหน่งแนวนอน */
-  top: -1100px; /* ปรับตำแหน่งแนวตั้ง */
-  background: url(Logo.png);
-  background-size: contain; /* ปรับขนาดภาพให้พอดีกับขนาดของ .Logobar */
-  background-repeat: no-repeat; /* ไม่ให้ภาพซ้ำ */
-}
-
-
-.pic-header {
-  position: absolute;
-  width: 526.56px; 
-  height: 230.49px;
-  left: 500.72px;
-  top: 314.23px;
-  z-index: -1;
-}
-
-
-  .pic-header img {
-    width: 550px; /* กำหนดความกว้างของรูป */
-    height: 250%; /* คงอัตราส่วนเดิมของรูป */
-  }
-
-
-
-
-
-.siampic{
-position: absolute;
-width: 363.45px;
-height: 272.25px;
-left: 120.32px;
-top: 931.46px;
-background: url(สยาม.jpg);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 44px;
-z-index: -1;
-}
-
-.benpark{
-position: absolute;
-width: 363.45px;
-height: 272.25px;
-left: 575px;
-top: 800px;
-background: url(สวนเบญ.jpg);
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-border-radius: 44px;
-z-index: -1;
-}
-
-.bantadthongstreet{
-position: absolute;
-width: 363.45px;
-height: 272.25px;
-left: 120.32px;
-top: 1326.29px;
-background: url(บรรทัดทอง.jpeg);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 44px;
-z-index: -1;
-}
-
-
-.suanluuangpark{
-position: absolute;
-width: 363.45px;
-height: 272.25px;
-left: 575px;
-top: 1200px;
-background: url(สวนหลวง.jpg);
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-border-radius: 44px;
-z-index: -1;
-}
-
-.iconsiam{
-position: absolute;
-width: 363.45px;
-height: 272.25px;
-left: 1030px;
-top: 1326.29px;
-background: url(IconSiam.jpeg);
-box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-border-radius: 44px;
-z-index: -1;
-}
-
-.chinatow{
-position: absolute;
-width: 363.45px;
-height: 272.25px;
-left: 1030px;
-top: 931.46px;
-background: url(เยาวราช.jpeg);
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-border-radius: 44px;
-z-index: -1;
-}
-
-.ic-profile{
-position: absolute;
-width: 58px;
-height: 60px;
-left: 869px;
-top: 49.69px;
-opacity: 0.33;
-}
-
-.Vector-1{
-position: absolute;
-left: 12.5%;
-right: 12.5%;
-top: 8.33%;
-bottom: 8.33%;
-background: #000000;
-}
-
-.Ellipse-4{
-box-sizing: border-box;
-position: absolute;
-width: 70.62px;
-height: 68px;
-left: px;
-top: 1670px;
-background-image: url('/home.png');
-background-size: cover;
-}
-
-.ic:round-home {
-  display: block;
-  width: 400x;
-  height: 39px;
-  position: absolute;
-  left: 50px;
-
-  z-index: 100000;
-}
-
-
-.Vector-2{
-position: absolute;
-left: 11.68%;
-right: 11.66%;
-top: 13.94%;
-bottom: 16.67%;
-background: #000000;
-}

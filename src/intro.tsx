@@ -1,30 +1,36 @@
 import React from "react";
-import "./App.css"; // นำไฟล์ CSS เข้ามาใช้
+import "./style/intro.css" // นำไฟล์ CSS เข้ามาใช้
 import logo from './assets/pic/Logobar.png'
 import wal from './assets/pic/วอลเปเปอร์.png'
+import { useNavigate } from 'react-router-dom';
+import { FaHome } from 'react-icons/fa'; // ใช้ไอคอนจาก react-icons
 
 const HomePage: React.FC = () => {
+  const navigate = useNavigate();
+
+  const goToRegister = () => {
+    navigate('/register'); // ไปที่หน้า Register
+  };
+
   return (
     <div className="Desktop-2">
     
       <div className="background"> 
       <img src={wal} className="waldesk" alt="wal" />
       </div>
-      <div className="Rectangle-9">
-
-        <div className="Logobar">
-        <img src={logo} alt="Logo" />
+      {/* navbar */}
+            {/* Navbar */}
+            <nav className="navbar">
+        <div className="navbar-logo">
+          <img src={logo} alt="Logo" />
+          <h1 className="TRIPTRAP">TRIPTRAP</h1>
         </div>
-
-        <h1 className="TRIPTRAP">TRIPTRAP</h1>
-        <div className="Rectangle-10">
-          <span className="SIGNIN">SIGN IN</span>
+        <div className="navbar-buttons">
+          <button className="signin-btn"  >LOGIN</button>
+          <button className="signup-btn"  onClick={goToRegister} > REGISTER </button>
+          <button className="Ellipse-4" >  <FaHome /> </button>
         </div>
-        <div className="Rectangle-11">
-          <span className="SIGNUP">SIGN UP</span>
-        </div>
-
-      </div>
+      </nav>
 
       {/* Hero Section */}
       <h2 className="WHATISTRIPTRAP">WHAT IS TRIPTRAP?</h2>
