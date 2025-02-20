@@ -53,8 +53,11 @@
                 </button>
 
             </div>
-            <div style="position:relative; top:20px;">
-                <input type="submit" name="submit" value="register">
+            <div>
+                <input type="submit" name="submit" value="SIGN UP">
+            </div>
+            <div>
+                <button type="button" id="login">Log In</button>
             </div>
 
 
@@ -73,6 +76,11 @@
                     close.style.display = "block";
                 }
             }
+            var login = document.getElementById("login");
+
+            login.addEventListener("click",()=>{
+                window.location.href = "Login.php";
+            })
             </script>
 
 

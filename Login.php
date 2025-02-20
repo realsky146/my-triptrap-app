@@ -53,6 +53,9 @@ include(__DIR__.("/config.php"));
             <div>
                 <input type="submit" name="submit" value="Login">
             </div>
+            <div>
+                <button type="button" id="register">SIGN UP</button>
+            </div>
             <script>
             function togglePassword() {
                 var passwordInput = document.getElementById("password");
@@ -68,6 +71,13 @@ include(__DIR__.("/config.php"));
                     close.style.display = "block";
                 }
             }
+            var register = document.getElementById("register");
+
+            register.addEventListener("click",()=>{
+                window.location.href ="SignUp.php";
+            }
+            )
+
             </script>
         </div>
     </form>
