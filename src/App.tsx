@@ -4,6 +4,10 @@ import './App.css';
 import logo from './assets/pic/Logo.png';
 import Intro from './intro'; 
 import wal from './assets/pic/วอลเปเปอร์.png'
+import './page/register/register'
+import Register from './page/register/register';
+import Login from './page/login/login';  // นำเข้าไฟล์ Login
+import profile from './page/profile/profile'
 
 // ✅ Component หลักที่ใช้ `useNavigate()`
 function AppContent() {
@@ -30,6 +34,9 @@ export default function App() {
       <Routes>
         <Route path="/" element={<AppContent />} />
         <Route path="/intro" element={<Intro />} />
+        <Route path="/register" element={<Register/>} /> {/* หน้าลงทะเบียน */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<profile/>} />
       </Routes>
     </Router>
   );
