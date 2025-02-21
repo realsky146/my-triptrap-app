@@ -1,0 +1,98 @@
+/* profile.module.css */
+.background {
+  position: fixed; /* ให้พื้นหลังคงที่ */
+  top: 0;
+  left: 0;
+  width: 100vw; /* ปรับขนาดให้เต็มจอแนวนอน */
+  height: 100vh; /* ปรับขนาดให้เต็มจอแนวตั้ง */
+  background: url('./assets/wal/วอลเปเปอร์.png') no-repeat center center;
+  background-size: cover; /* ปรับให้รูปเต็มจอและตัดส่วนเกินออก */
+  z-index: -9999; /* ✅ ตั้งค่าให้อยู่หลังสุด */
+}
+
+/* กล่อง */
+
+.profileContainer {
+  position: absolute;
+  width: 1101.37px;
+  height: 650px;
+  left: 168.33px;
+  top: 110.5px; 
+  background: #942121;
+  border-radius: 47px;
+  
+}
+
+.profileHeader {
+  font-size: 32px;
+  position: absolute; /* หรือ fixed */
+  top: -30px; /* ระบุให้ชิดด้านบน */
+ /* หรือเปลี่ยนตำแหน่งตามต้องการ */
+left: 100px;
+  padding: 10px; /* ปรับระยะห่างจากขอบ */
+}
+
+
+.profilePicture {
+  position: relative; /* ใช้เพื่อให้สามารถจัดตำแหน่งรูปได้ */
+  left: -200px; /* ขยับไปทางซ้าย */
+  top: 250px;
+}
+
+.profilePicture img {
+  width: 450px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* ใช้ left เพื่อเลื่อนรูปไปทางซ้ายโดยไม่กระทบกับ layout อื่น */
+
+}
+
+.profileDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+    border-radius: 50%;
+}
+
+.editProfileBtn, .logoutBtn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.editProfileBtn {
+  background-color: #ffffff;
+  color: #942121;
+}
+
+.logoutBtn {
+  background-color: #ff4d4d;
+  color: white;
+}
+
+.formGroup {
+  margin-bottom: 2px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "./style/intro.css" // นำไฟล์ CSS เข้ามาใช้
+import "./page/style/intro.css" // นำไฟล์ CSS เข้ามาใช้
 import logo from './assets/pic/Logobar.png'
 import wal from './assets/pic/วอลเปเปอร์.png'
 import { useNavigate } from 'react-router-dom';

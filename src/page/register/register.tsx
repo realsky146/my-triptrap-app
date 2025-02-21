@@ -1,7 +1,7 @@
 import rect from 'react';
 import App from '../../App';
 import { useNavigate } from 'react-router-dom';  // นำเข้า useNavigate
-
+import BackToIntroButton from '../../components/BackToIntroButton';
 
 const Register = () => {
     const navigate = useNavigate();  // สร้างตัวแปร navigate
@@ -9,6 +9,7 @@ const Register = () => {
   const goToLogin = () => {
     navigate('/login');  // กำหนดเส้นทางไปยังหน้า /login
 };
+
   return (
     <div className="container">
       <div className="wallpaper"></div>
@@ -22,6 +23,7 @@ const Register = () => {
       <p className="confirm-password">Confirm Password</p>
       <p className="google-login">Or login with Google</p>
       <button className="login-button" onClick={goToLogin} > Login </button>
+      <div> <BackToIntroButton /></div>
     </div>
 
     
