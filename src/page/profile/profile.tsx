@@ -1,93 +1,93 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from './profile.module.css'; // นำเข้า CSS Module
-import { mockUserData } from "../../data/mockUserData"; // นำเข้าข้อมูลที่แยกออกมา
-import "../style/App.css"; // นำเข้า App.css เพียงครั้งเดียว
-import wal from "../../assets/pic/วอลเปเปอร์.png"; // ปรับให้ตรงกับตำแหน่งที่ไฟล์ของคุณอยู่
-
+import { Avatar, Button, Container, TextField, Typography, Box } from "@mui/material";
+import wal from "../../assets/pic/วอลเปเปอร์.png"; // ใส่ path ของวอลเปเปอร์
+import { mockUserData } from "../../data/mockUserData"; // นำเข้าข้อมูล mock
+import { ButtonGroup } from "@mui/material";
+import { Edit, Save, Logout } from "@mui/icons-material";
 
 const Profile: React.FC = () => {
-  const [user, setUser] = useState(mockUserData); // ใช้ข้อมูลที่นำเข้ามา
+  const [user, setUser] = useState(mockUserData);
+  const [image, setImage] = useState<string | null>(null); // เก็บข้อมูลรูปโปรไฟล์
   const navigate = useNavigate();
-  const [image, setImage] = useState<string | null>(null); // เก็บข้อมูลรูปภาพ
-  // ฟังก์ชันสำหรับการอัปโหลดรูป
+
+  // ฟังก์ชันอัปโหลดรูป
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]; // ดึงไฟล์รูปภาพ
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setImage(reader.result as string); // เก็บรูปที่อัปโหลด
-      };
-      reader.readAsDataURL(file); // อ่านไฟล์เป็น URL
+      reader.onloadend = () => setImage(reader.result as string);
+      reader.readAsDataURL(file);
     }
-  };
-  const handleLogout = () => {
-    navigate("/"); // ไปยังหน้าแรก หรือหน้า Login
   };
 
   return (
-    <div className={styles.profileContainer}>
-      <div className={`${styles.background}`} style={{ backgroundImage: `url(${wal})` }}>
-        {/* เนื้อหาของโปรไฟล์ */}
-      </div>
-      <div className={styles.profileHeader}>
-        <h1>Profile...</h1>
-      </div>
-      <div className={styles.profileContent}>
-        <div className={styles.profilePicture}>
-        <label htmlFor="fileInput" className={styles.profileImgLabel}>
-          <img
-            src={image || "https://via.placeholder.com/150"} // ใช้รูปที่อัปโหลดหรือรูปเดิม
-            alt="Profile"
-            className={styles.profileImg}
+    <>
+      {/* พื้นหลังเต็มจอ */}
+      <Box
+        sx={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100vh",
+          backgroundImage: `url(${wal})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          zIndex: -1, // ทำให้เป็นพื้นหลังจริงๆ
+        }}
+      />
+
+      {/* คอนเทนต์โปรไฟล์ */}
+      <Container
+        maxWidth="sm"
+        sx={{
+          bgcolor: "#f7ffbb", // ทำให้โปร่งแสงเล็กน้อย
+          padding: 4,
+          borderRadius: 3,
+          boxShadow: 3,
+          textAlign: "center",
+          mt: 5, // ขยับลงให้สวย
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Profile
+        </Typography>
+
+        {/* ส่วนอัปโหลดรูปโปรไฟล์ */}
+        <Box display="flex" flexDirection="column" alignItems="center" mb={2}>
+          <Avatar
+            src={image || user.profileImage}
+            sx={{ width: 100, height: 100, mb: 2 }}
           />
-        </label>
+          <Button variant="contained" component="label" color="info">
+            Upload Photo
+            <input type="file" hidden accept="image/*" onChange={handleImageChange} />
+          </Button>
+        </Box>
 
-        {/* input ถูกซ่อน */}
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          id="fileInput"
-          className={styles.fileInput}
-        />
-          {/* <button className="uploadBtn">Upload</button> */}
-        </div>
-       
-        <div className={styles.profileDetails}>
+        {/* ฟอร์มข้อมูล */}
+        <TextField fullWidth margin="normal" label="Name - Lastname" defaultValue={user.fullName} />
+        <TextField fullWidth margin="normal" label="Username" defaultValue={user.username} />
+        <TextField fullWidth margin="normal" label="E-mail" type="email" defaultValue={user.email} />
+        <TextField fullWidth margin="normal" label="Phone" type="tel" />
+        <TextField fullWidth margin="normal" label="Password" type="password" />
+        <TextField fullWidth margin="normal" label="Confirm Password" type="password" />
 
-          <form className="formGroup">
-          <div className={styles.formGroup}>
-              <label htmlFor="fullName">ชื่อ-นามสกุล...</label>
-              <input type="text" id="fullName" placeholder="ชื่อ-นามสกุล" defaultValue={user.fullName} />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="username">Username...</label>
-              <input type="text" id="username" placeholder="ยูเซอร์เนม" defaultValue={user.username} />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="email">E-mail...</label>
-              <input type="email" id="email" placeholder="อีเมลล์" defaultValue={user.email} />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="phone">Phone...</label>
-              <input type="text" id="phone" placeholder="เบอร์โทรศัพท์" />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="password">Password...</label>
-              <input type="password" id="password" placeholder="รหัสผ่าน" />
-            </div>
-            <div className={styles.formGroup}>
-              <label htmlFor="confirmPassword">Confirm Password...</label>
-              <input type="password" id="confirmPassword" placeholder="คอนเฟิร์มรหัสผ่าน" />
-            </div>
-            <button className={styles.saveBtn}>Save Changes</button>
-          </form>
-          <button className={styles.editProfileBtn}>Edit Profile</button>
-          <button className={styles.logoutBtn} onClick={handleLogout}>Logout</button>
-        </div>
-      </div>
-    </div>
+        {/* ปุ่มต่างๆ */}
+        <Box mt={2} display="flex" justifyContent="space-between">
+          <Button variant="outlined" color="warning">
+            Edit Profile
+          </Button>
+          <Button variant="contained" color="success">
+            Save Changes
+          </Button>
+          <Button variant="contained" color="error" onClick={() => navigate("/")}>
+            Logout
+          </Button>
+        </Box>
+      </Container>
+    </>
   );
 };
 

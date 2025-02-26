@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+
 import { useState } from 'react';
 import './page/style/App.css';
 import logo from './assets/pic/Logo.png';
 import Intro from './intro'; 
-import wal from './assets/pic/วอลเปเปอร์.png'
-import './page/register/register'
+import wal from './assets/pic/วอลเปเปอร์.png';
+
 import Register from './page/register/register';
 import Login from './page/login/Login';  // นำเข้าไฟล์ Login
 import Profile from './page/profile/profile';
-import { LogIn } from 'lucide-react';
 
 // ✅ Component หลักที่ใช้ `useNavigate()`
 function AppContent() {
@@ -20,7 +20,7 @@ function AppContent() {
         <img src={logo} className="logo" alt="TripTrap logo" />
       </div>
       <div className="background"> 
-      <img src={wal} className="waldesk" alt="wal" />
+        <img src={wal} className="waldesk" alt="wal" />
       </div>
       <button className="start-button" onClick={() => navigate('/intro')}>
         START
@@ -29,13 +29,14 @@ function AppContent() {
     </>
   );
 }
+
 export default function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<AppContent />} />
         <Route path="/intro" element={<Intro />} />
-        <Route path="/register" element={<Register/>} /> {/* หน้าลงทะเบียน */}
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
