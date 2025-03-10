@@ -56,6 +56,7 @@ const Login: React.FC = () => {
         >
           START
         </Button>
+
         <Box mt={2}>
           <BackToIntroButton />
         </Box>

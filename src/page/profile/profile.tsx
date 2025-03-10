@@ -79,7 +79,7 @@ const Profile: React.FC = () => {
           <Button variant="outlined" color="warning">
             Edit Profile
           </Button>
-          <Button variant="contained" color="success">
+          <Button variant="contained" color="success" onClick={() => navigate("/home")}>
             Save Changes
           </Button>
           <Button variant="contained" color="error" onClick={() => navigate("/")}>

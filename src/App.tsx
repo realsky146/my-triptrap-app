@@ -3,23 +3,24 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-route
 import { useState } from 'react';
 import './page/style/App.css';
 import logo from './assets/pic/Logo.png';
-import Intro from './intro'; 
+import Intro from './intro';
 import wal from './assets/pic/วอลเปเปอร์.png';
 
 import Register from './page/register/register';
-import Login from './page/login/Login';  // นำเข้าไฟล์ Login
+import Login from './page/login/Login';
 import Profile from './page/profile/profile';
+import Home from './page/home/home'; // ✅ เปลี่ยนเป็นตัวพิมพ์ใหญ่
 
 // ✅ Component หลักที่ใช้ `useNavigate()`
 function AppContent() {
-  const navigate = useNavigate(); // ✅ ใช้ useNavigate() ได้ถูกต้อง
+  const navigate = useNavigate();
 
   return (
     <>
       <div className="logo-container">
         <img src={logo} className="logo" alt="TripTrap logo" />
       </div>
-      <div className="background"> 
+      <div className="background">
         <img src={wal} className="waldesk" alt="wal" />
       </div>
       <button className="start-button" onClick={() => navigate('/intro')}>
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/home" element={<Home />} /> {/* ✅ แก้ไขให้ใช้ <Home /> */}
       </Routes>
     </Router>
   );
