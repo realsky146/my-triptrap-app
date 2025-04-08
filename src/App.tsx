@@ -8,6 +8,7 @@ import Register from './page/register/register';
 import Login from './page/login/Login';
 import Profile from './page/profile/profile';
 import Home from './page/home/home'; // ✅ เปลี่ยนเป็นตัวพิมพ์ใหญ่
+import LocationSettings from '../src/components/LocationSettings';
 
 // ✅ Component หลักที่ใช้ `useNavigate()`
 function AppContent() {
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/home" element={<Home />} /> {/* ✅ แก้ไขให้ใช้ <Home /> */}
+        <Route path="/location" element={<LocationSettings />} />
       </Routes>
     </Router>
   );
