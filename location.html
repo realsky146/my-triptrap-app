@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ตำแหน่งของคุณ</title>
+</head>
+<body>
+  <h2>ตำแหน่งของคุณ</h2>
+  <p id="location">กำลังโหลด...</p>
+
+  <script>
+    window.onload = function() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        document.getElementById("location").innerText = "เบราว์เซอร์ไม่รองรับ";
+      }
+    }
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+
+      // ส่งพิกัดไปยัง Nominatim API
+      fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`)
+        .then(response => response.json())
+        .then(data => {
+          const address = data.display_name;
+          document.getElementById("location").innerText = `ตำแหน่งของคุณ: ${address}`;
+
+          // ส่งไป backend ก็ได้ถ้าต้องการ
+          fetch('/location', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              latitude: lat,
+              longitude: lon,
+              address: address
+            })
+          }).then(res => res.text()).then(msg => console.log(msg));
+        });
+    }
+
+    function showError(error) {
+      document.getElementById("location").innerText = "ไม่สามารถดึงตำแหน่งได้";
+    }
+  </script>
+</body>
+</html>
