@@ -11,20 +11,20 @@ const Register: React.FC = () => {
   };
 
   return (
-    <Box 
-      display="flex" 
-      justifyContent="center" 
-      alignItems="center" 
+    <Box
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
       minHeight="100vh"
-      sx={{ 
+      sx={{
         position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100vh",
-          backgroundImage: `url(${wal})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100vh",
+        backgroundImage: `url(${wal})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <Paper elevation={3} sx={{ p: 4, width: 400, textAlign: 'center' }}>
@@ -32,22 +32,25 @@ const Register: React.FC = () => {
           Register
         </Typography>
         <Divider sx={{ mb: 2 }} />
-        
+
         <TextField fullWidth label="Username" variant="outlined" margin="normal" />
         <TextField fullWidth label="Password" type="password" variant="outlined" margin="normal" />
         <TextField fullWidth label="Confirm Password" type="password" variant="outlined" margin="normal" />
-        
-        <Typography variant="body2" sx={{ my: 2 }}>
-          Or login with Google
-        </Typography>
-        
-        <Button fullWidth variant="contained" color="primary" onClick={goToLogin}>
+
+        <Button
+          fullWidth
+          variant="contained"
+          color="primary"
+          onClick={goToLogin}
+          style={{ marginTop: '15px' }}
+        >
           Login
         </Button>
-        
-        <Box mt={2}>
+
+        <Box mt={2} sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <BackToIntroButton />
         </Box>
+
       </Paper>
     </Box>
   );
