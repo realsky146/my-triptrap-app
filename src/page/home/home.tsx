@@ -207,3 +207,5 @@ const TripTrapUI: React.FC = () => {
 };
 
 export default TripTrapUI;
+
+// เช็คๆ

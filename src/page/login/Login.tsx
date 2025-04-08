@@ -1,35 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Button, Container, Typography, Box } from "@mui/material";
 import BackToIntroButton from "../../components/BackToIntroButton";
 import wal from "../../assets/pic/วอลเปเปอร์.png";
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleStart = async () => {
-    // ส่งข้อมูลไปยัง backend
-    try {
-      const response = await fetch('http://localhost/myapp/login.php', { // URL ของ PHP Backend
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Login สำเร็จ!");
-        navigate("/profile"); // ถ้า login สำเร็จ ไปหน้า profile
-      } else {
-        alert(`เกิดข้อผิดพลาด: ${data.message}`);
-      }
-    } catch (error) {
-      console.error(error);
-      alert("เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์");
-    }
+  const handleStart = () => {
+    navigate("/profile");
   };
 
   return (
@@ -56,7 +35,7 @@ const Login: React.FC = () => {
           flexDirection: "column",
           alignItems: "center",
           textAlign: "center",
-          bgcolor: "rgba(255, 255, 255, 0.8)",
+          bgcolor: "rgba(255, 255, 255, 0.8)", // พื้นหลังใสเพื่อให้อ่านง่ายขึ้น
           p: 3,
           borderRadius: 2,
           boxShadow: 3,
@@ -66,23 +45,8 @@ const Login: React.FC = () => {
           Login
         </Typography>
 
-        <TextField
-          label="Email"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={email}
-          onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setEmail(e.target.value)}
-        />
-        <TextField
-          label="Password"
-          type="password"
-          variant="outlined"
-          fullWidth
-          margin="normal"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <TextField label="Username" variant="outlined" fullWidth margin="normal" />
+        <TextField label="Password" type="password" variant="outlined" fullWidth margin="normal" />
         <Button
           variant="contained"
           color="primary"
