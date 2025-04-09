@@ -19,7 +19,7 @@
   display: flex;
   cursor: pointer;
   border-radius: 50%;
-  background: #6D4FC2;
+  background: #F4A2A2;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
@@ -73,7 +73,7 @@
   padding: 15px 22px;
   align-items: center;
   justify-content: space-between;
-  background: #6D4FC2;
+  background: #F4A2A2;
 }
 
 .chat-header .header-info{
@@ -87,14 +87,14 @@
   width: 35px;
   padding: 6px;
   flex-shrink: 0;
-  fill: #6D4FC2;
+  fill: #F4A2A2;
   background: #fff;
   border-radius: 50%;
 
 }
 
 .header-info .logo-text{
-  color: #fff;
+  color: #B70202;
   font-size: 1.31rem;
   font-weight: 600;
 
@@ -116,7 +116,7 @@
 }
 
 .chat-header button:hover {
-  background: #593bab;
+  background: #F4A2A2;
 
 }
 
@@ -129,7 +129,7 @@
   overflow-y: auto;
   padding: 25px 22px;
   scrollbar-width: thin;
-  scrollbar-color: #DDD3F9 transparent;
+  scrollbar-color: #fff transparent;
 }
 
 .chat-body .message {
@@ -147,7 +147,7 @@
   fill: #fff;
   align-self: flex-end;
   margin-bottom: 2px;
-  background: #6D4FC2;
+  background: #F4A2A2;
   border-radius: 50%;
 }
 
@@ -159,7 +159,7 @@
   font-size: 0.95rem;
 }
 .chat-body .bot-message .message-text{
-  background: #F6F2FF;
+  background: #f0f0f0;
   border-radius: 13px 13px 13px 3px;
 
 }
@@ -170,8 +170,8 @@
 }
 
 .chat-body .user-message .message-text{
-  color: #fff;
-  background: #6D4FC2;
+  color: #000000;
+  background: #F4A2A2;
   border-radius: 13px 13px 3px 13px;
   
 }
@@ -194,7 +194,7 @@
 }
 
 .chat-footer .chat-form:focus-within{
-  outline: 2px solid #6D4FC2;
+  outline: 2px solid #F4A2A2;
 }
 
 
@@ -215,17 +215,18 @@
   border: none;
   display: none;
   outline: none;
+
 font-size: 1.15rem;
   color: #fff;
   flex-shrink: 0;
   margin-right: 6px;
   border-radius: 50%;
-  background: #6D4FC2;
+  background: #F4A2A2;
 
 }
 
 .chat-form button:hover{
-  background: #593bab;
+  background: #F4A2A2;
 }
 
 .chat-form .message-input:valid ~ button{
