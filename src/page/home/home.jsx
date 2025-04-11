@@ -29,6 +29,8 @@ const TripTrapUI = () => {
   const [locationInfo, setLocationInfo] = useState("กำลังดึงข้อมูลตำแหน่งของคุณ...");
   const [chatHistory, setChatHistory] = useState([]);
   const [showChatbot, setShowChatbot] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
+  const [arrivalTime, setArrivalTime] = useState(null);
   const chatBodyRef = useRef();
 
   useEffect(() => {
@@ -67,6 +69,14 @@ const TripTrapUI = () => {
       { role: "model", text: combinedLocationInfo, hideInChat: true },
     ]);
   }, [locationInfo]);
+
+  useEffect(() => {
+    if (travelTime !== null) {
+      const arrival = new Date();
+      arrival.setMinutes(arrival.getMinutes() + travelTime);
+      setArrivalTime(arrival);
+    }
+  }, [travelTime]);
 
   const generateBotResponse = async (history) => {
     const updateHistory = (text) => {
@@ -271,6 +281,22 @@ const TripTrapUI = () => {
         )}
         {travelTime !== null && (
           <InfoBox>🕒 เวลาเดินทางโดยประมาณ: {travelTime.toFixed(2)} นาที</InfoBox>
+        )}
+        <InfoBox>
+          ⏰ เวลาปัจจุบัน:{" "}
+          {currentTime.toLocaleTimeString("th-TH", {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </InfoBox>
+        {arrivalTime && (
+          <InfoBox>
+            🎯 เวลาที่ถึงโดยประมาณ:{" "}
+            {arrivalTime.toLocaleTimeString("th-TH", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </InfoBox>
         )}
 
         {/* Chatbot & Buttons */}
