@@ -16,6 +16,9 @@ import ChatMessage from "@/components/ChatMessage";
 import { locationInfo as locationFromFile } from "@/page/home/location";
 import "@/page/home/index.css";
 import InfoBox from "@/components/InfoBox"; // ✅ ใช้ InfoBox ที่คุณสร้างไว้
+import SearchHistoryButton from "../../components/SearchHistoryButton"
+import '@fontsource/kanit';  // นำฟอนต์ Kanit มาใช้
+
 
 const TripTrapUI = () => {
   const navigate = useNavigate();
@@ -124,6 +127,16 @@ const TripTrapUI = () => {
         const lonNum = parseFloat(lon);
         setCoordinates({ lat: latNum, lon: lonNum });
 
+        const newHistoryItem = {
+          query: searchQuery,
+          coordinates: { lat: latNum, lon: lonNum },
+          timestamp: new Date().toISOString(),
+        };
+
+        const existingHistory = JSON.parse(localStorage.getItem("triptrap-history") || "[]");
+        const updatedHistory = [newHistoryItem, ...existingHistory.slice(0, 9)]; // จำกัด 10 รายการ
+        localStorage.setItem("triptrap-history", JSON.stringify(updatedHistory));
+
         if (currentPosition) {
           calculateDistanceAndTraffic(
             currentPosition.lat,
@@ -174,27 +187,56 @@ const TripTrapUI = () => {
       display="flex"
       justifyContent="center"
       alignItems="center"
-      minHeight="100vh"
+
       sx={{
-        backgroundImage: `url(${wal})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        position: "relative",
         width: "100%",
         height: "100vh",
+        overflow: "hidden",
+        "&::before": {
+          content: '""',
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100vw",
+          height: "100vh",
+          backgroundImage: `url(${wal})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          zIndex: -1,
+          pointerEvents: "none", // 🧠 อันนี้สำคัญมาก!
+        },
       }}
     >
+
       <Paper
+
         elevation={3}
         sx={{
-          width: 600,
+          width: "100%", // ใช้ความกว้างเต็มที่
+          maxWidth: 600, // จำกัดความกว้างสูงสุด
+          maxHeight: "90vh", // จำกัดความสูงไม่เกิน 80% ของความสูงหน้าจอ
           p: 4,
           bgcolor: "rgba(255, 255, 255, 0.95)",
           borderRadius: 5,
           textAlign: "center",
+          position: "relative",
+          overflowY: "auto", // ทำให้มีการเลื่อนเนื้อหาภายในเมื่อมันยาวเกินไป
+          "&::-webkit-scrollbar": {
+            width: "6px", // กำหนดความกว้างของ scrollbar
+          },
+          "&::-webkit-scrollbar-track": {
+            background: "transparent", // ทำให้พื้นหลังของ track เป็นโปร่งใส
+          },
+          "&::-webkit-scrollbar-thumb": {
+            backgroundColor: "transparent", // ทำให้ตัวเลื่อน (thumb) เป็นโปร่งใส
+          },
         }}
+
       >
         <Typography
-          variant="h4"
+          variant="h5"
           color="#B70202"
           fontFamily="'Kanit', sans-serif"
           fontWeight={600}
@@ -269,20 +311,33 @@ const TripTrapUI = () => {
         </Button>
 
         {/* Info Section */}
-        {location && <InfoBox>📍 ตำแหน่งปัจจุบันของคุณ: {location}</InfoBox>}
+        {/* Info Section */}
+        {location && (
+          <InfoBox sx={{ fontSize: 14, fontFamily: "'Kanit', sans-serif", my: 2 }}>
+            📍 ตำแหน่งปัจจุบันของคุณ: {location}
+          </InfoBox>
+        )}
         {coordinates && (
-          <InfoBox>🗺️ พิกัดที่ค้นหา: Lat: {coordinates.lat}, Lon: {coordinates.lon}</InfoBox>
+          <InfoBox sx={{ fontSize: 14, fontFamily: "'Kanit', sans-serif", my: 2 }}>
+            🗺️ พิกัดที่ค้นหา: Lat: {coordinates.lat}, Lon: {coordinates.lon}
+          </InfoBox>
         )}
         {distance !== null && (
-          <InfoBox>🚗 ระยะทาง: {distance.toFixed(2)} กม.</InfoBox>
+          <InfoBox sx={{ fontSize: 14, fontFamily: "'Kanit', sans-serif", my: 2 }}>
+            🚗 ระยะทาง: {distance.toFixed(2)} กม.
+          </InfoBox>
         )}
         {trafficDelay !== null && (
-          <InfoBox>⏱️ เวลาชะลอตัวจากจราจร: {trafficDelay.toFixed(2)} นาที</InfoBox>
+          <InfoBox sx={{ fontSize: 14, fontFamily: "'Kanit', sans-serif", my: 2 }}>
+            ⏱️ เวลาชะลอตัวจากจราจร: {trafficDelay.toFixed(2)} นาที
+          </InfoBox>
         )}
         {travelTime !== null && (
-          <InfoBox>🕒 เวลาเดินทางโดยประมาณ: {travelTime.toFixed(2)} นาที</InfoBox>
+          <InfoBox sx={{ fontSize: 14, fontFamily: "'Kanit', sans-serif", my: 2 }}>
+            🕒 เวลาเดินทางโดยประมาณ: {travelTime.toFixed(2)} นาที
+          </InfoBox>
         )}
-        <InfoBox>
+        <InfoBox sx={{ fontSize: 14, fontFamily: "'Kanit', sans-serif", my: 2 }}>
           ⏰ เวลาปัจจุบัน:{" "}
           {currentTime.toLocaleTimeString("th-TH", {
             hour: "2-digit",
@@ -290,7 +345,7 @@ const TripTrapUI = () => {
           })}
         </InfoBox>
         {arrivalTime && (
-          <InfoBox>
+          <InfoBox sx={{ fontSize: 14, fontFamily: "'Kanit', sans-serif", my: 2 }}>
             🎯 เวลาที่ถึงโดยประมาณ:{" "}
             {arrivalTime.toLocaleTimeString("th-TH", {
               hour: "2-digit",
@@ -299,19 +354,31 @@ const TripTrapUI = () => {
           </InfoBox>
         )}
 
+
+
         {/* Chatbot & Buttons */}
-        <Box position="absolute" bottom={20} left={20} display="flex" gap={2}>
+        <Box
+          position="fixed"
+          bottom={30}
+          left={30} // ขยับจากขอบซ้าย 30px
+          display="flex"
+          gap={2}
+        >
           <IconButton
             sx={{ width: 60, height: 60, bgcolor: "#ffffffaa", borderRadius: "50%" }}
           >
-            <History fontSize="large" />
+            <SearchHistoryButton />
           </IconButton>
+
           <IconButton
+            onClick={() => navigate("/")}
             sx={{ width: 60, height: 60, bgcolor: "#ffffffaa", borderRadius: "50%" }}
           >
             <Home fontSize="large" />
           </IconButton>
         </Box>
+
+
 
         {/* Chatbot Section */}
         <div className={`container ${showChatbot ? "show-chatbot" : ""}`}>
@@ -357,7 +424,7 @@ const TripTrapUI = () => {
           </div>
         </div>
       </Paper>
-    </Box>
+    </Box >
   );
 };
 
