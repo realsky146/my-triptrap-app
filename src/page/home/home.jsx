@@ -107,65 +107,75 @@ const TripTrapUI = () => {
   const handleCancel = () => setSearchQuery("");
 
   const handleStart = () => {
-    if (!searchQuery) return alert("กรุณากรอกชื่อที่อยู่");
-
-    fetch(
-      `https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`
-    )
+    if (!searchQuery) {
+      alert("กรุณากรอกชื่อที่อยู่");
+      return;
+    }
+  
+    if (!currentPosition || !currentPosition.lat || !currentPosition.lon) {
+      alert("ตำแหน่งปัจจุบันยังไม่พร้อม ลองใหม่อีกครั้งค่ะ");
+      return;
+    }
+  
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${searchQuery}`)
       .then((res) => res.json())
       .then((data) => {
         if (!data.length) {
           alert("ไม่พบข้อมูลที่อยู่");
-          return setCoordinates(null);
+          setCoordinates(null);
+          return;
         }
-
-        const { lat, lon } = data[0];
-        const latNum = parseFloat(lat);
-        const lonNum = parseFloat(lon);
-        setCoordinates({ lat: latNum, lon: lonNum });
-
-        if (currentPosition) {
-          calculateDistanceAndTraffic(
-            currentPosition.lat,
-            currentPosition.lon,
-            latNum,
-            lonNum
-          );
+  
+        const lat = parseFloat(data[0].lat);
+        const lon = parseFloat(data[0].lon);
+  
+        if (isNaN(lat) || isNaN(lon)) {
+          alert("ค่าพิกัดที่ได้ไม่ถูกต้อง");
+          setCoordinates(null);
+          return;
         }
+  
+        setCoordinates({ lat, lon });
+  
+        calculateDistanceAndTraffic(
+          currentPosition.lat,
+          currentPosition.lon,
+          lat,
+          lon
+        );
       })
       .catch((err) => {
         console.error("Error fetching location data: ", err);
+        alert("เกิดข้อผิดพลาดขณะค้นหาที่อยู่");
         setCoordinates(null);
       });
   };
-
+  
   const calculateDistanceAndTraffic = (lat1, lon1, lat2, lon2) => {
-    const R = 6371;
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a =
-      Math.sin(dLat / 2) ** 2 +
-      Math.cos(toRad(lat1)) *
-      Math.cos(toRad(lat2)) *
-      Math.sin(dLon / 2) ** 2;
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    setDistance(R * c);
-
     fetch(
       `https://api.tomtom.com/routing/1/calculateRoute/${lat1},${lon1}:${lat2},${lon2}/json?key=2JFifh1oEBskiT2PJT9bgJYgztkrqRkb`
     )
       .then((res) => res.json())
       .then((data) => {
+        if (!data.routes || !data.routes.length) {
+          throw new Error("ไม่พบข้อมูลเส้นทาง");
+        }
+  
         const summary = data.routes[0].summary;
+  
+        // ✅ ใช้ระยะทางจริงจาก TomTom API แทนสูตร Haversine
+        setDistance(summary.lengthInMeters / 1000); // หน่วยเป็นกิโลเมตร
         setTravelTime(summary.travelTimeInSeconds / 60);
         setTrafficDelay(summary.trafficDelayInSeconds / 60);
       })
       .catch((err) => {
         console.error("Error fetching traffic data: ", err);
+        alert("ไม่สามารถดึงข้อมูลจราจรได้");
         setTravelTime(0);
         setTrafficDelay(0);
       });
   };
+  
 
   const toRad = (deg) => (deg * Math.PI) / 180;
 
