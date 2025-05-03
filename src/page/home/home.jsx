@@ -210,7 +210,7 @@ const TripTrapUI = () => {
           fontWeight={600}
           gutterBottom
         >
-          TRIPTRAP
+          TripTrap
         </Typography>
 
         {/* Search Box */}
@@ -334,7 +334,7 @@ const TripTrapUI = () => {
             <div className="chat-header">
               <div className="header-info">
                 <ChatbotIcon />
-                <h2 className="logo-text">TRIPTRAP</h2>
+                <h2 className="logo-text">TripTrap</h2>
               </div>
               <button
                 onClick={() => setShowChatbot((prev) => !prev)}
